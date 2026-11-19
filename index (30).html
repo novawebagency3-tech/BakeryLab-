@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; frame-src https://www.google.com;">
+<title>Bakery Lab — Cafè · Food · Bistrot | Calcinelli (Colli al Metauro)</title>
+<meta name="description" content="Bakery Lab a Calcinelli: caffetteria e pasticceria artigianale dalle 07:00, pausa pranzo, lab burger gourmet e aperitivi. Via Ponte Metauro 88. Tel. 0721 895646.">
+<style>
+:root{
+  --flour:#FAF9F6; --cement:#F1F0EC; --shop:#141517; --graphite:#18181B;
+  --brick:#B91C1C; --amber:#D97706; --line:#d9d6cf; --muted:#5b5b60;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue Condensed",Impact,sans-serif;
+  --body:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font:16px/1.6 var(--body);background:var(--flour);color:var(--graphite)}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+.alt{background:var(--cement)}
+.dark{background:var(--shop);color:#eceae4}
+h1,h2,h3{font-family:var(--display);line-height:1.02;font-weight:800;letter-spacing:.01em}
+h2{font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase;margin-bottom:12px}
+h3{font-size:1.4rem}
+.lead{max-width:62ch;color:var(--muted);margin-bottom:32px}
+.dark .lead{color:#b9b6ad}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--shop);color:#fff;border-bottom:3px solid var(--brick)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.25rem var(--display);letter-spacing:.14em}
+.brand svg{width:44px;height:44px}
+nav{display:flex;gap:22px}
+nav a{text-decoration:none;font-size:.9rem;color:#d6d3cb}
+nav a:hover{color:#fff}
+.hcall{display:inline-flex;align-items:center;gap:8px;background:var(--brick);color:#fff;padding:8px 14px;text-decoration:none;font-weight:600;font-size:.9rem}
+@media(max-width:820px){nav{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;font:700 1rem var(--body);text-decoration:none;border:2px solid var(--graphite);background:transparent;color:var(--graphite);cursor:pointer;min-height:48px}
+.btn.red{background:var(--brick);border-color:var(--brick);color:#fff}
+.btn.red:hover{background:#991b1b}
+.btn.ink{background:var(--graphite);color:#fff}
+.btn.light{border-color:#fff;color:#fff}
+.btn:hover{transform:translateY(-1px)}
+
+/* hero */
+.hero{padding:0;background:var(--shop);color:#fff;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:56px}
+.eyebrow{font-size:.78rem;letter-spacing:.06em;color:var(--amber);font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.6rem);text-transform:uppercase;margin-bottom:18px}
+.hero p{color:#cfccc3;max-width:52ch;margin-bottom:28px;font-size:1.08rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.ph{aspect-ratio:4/5;background:
+  repeating-linear-gradient(90deg,#2a2b2f 0 14px,#1d1e21 14px 28px);position:relative;border:1px solid #333}
+.ph img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.hero .ph{border-bottom:8px solid var(--amber)}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero .ph{aspect-ratio:16/10}}
+
+/* gallery */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);text-align:left;padding:0;cursor:pointer;font:inherit;color:inherit}
+.card .ph{aspect-ratio:4/3;background:repeating-linear-gradient(90deg,#e4e2dc 0 14px,#d9d6cf 14px 28px);border:0}
+.card div.t{padding:14px 16px 18px}
+.card h3{margin-bottom:6px}
+.card p{font-size:.92rem;color:var(--muted)}
+dialog{border:0;padding:0;background:transparent;max-width:min(94vw,980px);width:100%}
+dialog::backdrop{background:rgba(10,10,12,.88)}
+dialog figure{background:var(--shop);color:#eee;position:relative}
+dialog img{width:100%;max-height:75vh;object-fit:contain;background:#000}
+dialog figcaption{padding:14px 18px}
+dialog button{position:absolute;top:8px;right:8px;background:var(--brick);color:#fff;border:0;width:44px;height:44px;font-size:1.4rem;cursor:pointer}
+
+/* menu */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{padding:10px 16px;border:2px solid var(--graphite);background:transparent;font:600 .92rem var(--body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--graphite);color:#fff}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 48px}
+@media(max-width:760px){.menu{grid-template-columns:1fr}}
+.group{break-inside:avoid}
+.group>h3{font-size:1.7rem;text-transform:uppercase;border-bottom:3px solid var(--brick);padding-bottom:6px;margin-bottom:6px}
+.group .sub{font-size:.85rem;color:var(--amber);font-weight:600;margin-bottom:8px}
+.item{display:flex;gap:12px;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--line)}
+.item b{display:block}
+.item small{color:var(--muted)}
+.price{font:800 1.2rem var(--display);white-space:nowrap;color:var(--brick)}
+.group[hidden]{display:none}
+.menu.one{grid-template-columns:1fr;max-width:640px}
+
+/* burger */
+.burger{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:820px){.burger{grid-template-columns:1fr}}
+.dark .item{border-color:#3a3b40}
+.dark .price{color:var(--amber)}
+.dark .item small{color:#a9a69d}
+.big{font:800 clamp(3rem,9vw,6rem) var(--display);color:var(--amber);line-height:.9}
+
+/* booking */
+form{background:#fff;border:1px solid var(--line);padding:28px;max-width:760px}
+fieldset{border:0;padding:0;margin:0 0 26px}
+legend{font:800 1.5rem var(--display);text-transform:uppercase;margin-bottom:12px;display:flex;gap:10px;align-items:center}
+legend span{background:var(--brick);color:#fff;width:30px;height:30px;display:grid;place-items:center;font-size:1rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.opt input{position:absolute;opacity:0}
+.opt span{display:block;padding:12px 14px;border:2px solid var(--line);cursor:pointer;font-weight:600}
+.opt input:checked+span{border-color:var(--brick);background:#fdf1f1}
+.opt input:focus-visible+span{outline:3px solid var(--amber)}
+label.f{display:block;font-weight:600;font-size:.9rem;margin-bottom:12px}
+.f input,.f select,.f textarea{display:block;width:100%;margin-top:4px;padding:12px;border:2px solid var(--line);font:inherit;background:var(--flour);min-height:48px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.gdpr{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;margin:8px 0 20px}
+.gdpr input{margin-top:4px;width:20px;height:20px;accent-color:var(--brick)}
+.actions{display:flex;flex-direction:column;gap:10px}
+#msg{min-height:1.5em;font-size:.9rem;font-weight:600;color:var(--brick);margin-top:10px}
+
+/* info */
+.info{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:820px){.info{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;margin-bottom:24px}
+td{padding:10px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:700}
+.closed td:last-child{color:var(--brick)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin-bottom:24px}
+.badges li{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--graphite);font-size:.88rem;font-weight:600;background:#fff}
+address{font-style:normal;margin-bottom:16px}
+.map{aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#e4e2dc 0 12px,#d9d6cf 12px 24px);display:grid;place-items:center;border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;border:0}
+
+/* privacy & footer */
+details{border:1px solid var(--line);background:#fff;padding:16px 20px;max-width:860px}
+summary{cursor:pointer;font-weight:700}
+details p,details li{font-size:.92rem;color:var(--muted);margin-top:10px}
+details ul{padding-left:20px}
+footer{background:var(--shop);color:#cfccc3;padding:48px 0 32px;border-top:3px solid var(--brick)}
+.fgrid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:center}
+footer a{color:#fff}
+.copy{margin-top:28px;font-size:.8rem;color:#8d8a82}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="#141517" stroke="#fff" stroke-width="2"/>
+    <circle cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="1"/>
+    <text x="22" y="56" font-family="Arial Narrow,Arial,sans-serif" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">B</text>
+    <text x="78" y="56" font-family="Arial Narrow,Arial,sans-serif" font-weight="800" font-size="22" fill="#fff" text-anchor="middle">L</text>
+    <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+      <path d="M50 30v40"/><path d="M44 30v9a6 6 0 0 0 12 0v-9"/>
+      <path d="M44 70c0-4 12-4 12 0"/>
+    </g>
+    <path id="arcT" d="M18 50a32 32 0 0 1 64 0" fill="none"/>
+    <text font-family="Arial,sans-serif" font-size="8.5" font-weight="700" letter-spacing="2.4" fill="#fff"><textPath href="#arcT" startOffset="50%" text-anchor="middle">BAKERY LAB</textPath></text>
+  </symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="car" viewBox="0 0 24 24"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16M4 16h16v3H4zM7 19v1.5M17 19v1.5"/><circle cx="8" cy="13.5" r=".6"/><circle cx="16" cy="13.5" r=".6"/></symbol>
+  <symbol id="paw" viewBox="0 0 24 24"><circle cx="6" cy="10" r="1.7"/><circle cx="10" cy="6" r="1.7"/><circle cx="14" cy="6" r="1.7"/><circle cx="18" cy="10" r="1.7"/><path d="M12 12c-3 0-5 3-5 5 0 2 2 2.5 5 1.5 3 1 5 .5 5-1.5 0-2-2-5-5-5z"/></symbol>
+  <symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .7 3 2.5 3 6"/></symbol>
+  <symbol id="laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1"/><path d="M2 19h20"/></symbol>
+  <symbol id="access" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="1.8"/><path d="M12 8v6h5l2 5M12 11H8M9 15a4.5 4.5 0 1 0 6 5"/></symbol>
+  <symbol id="card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Bakery Lab, torna all'inizio"><svg><use href="#logo"/></svg><span>BAKERY LAB</span></a>
+    <nav aria-label="Principale">
+      <a href="#galleria">Il locale</a><a href="#menu">Menù</a><a href="#burger">Burger &amp; aperitivi</a><a href="#prenota">Prenota</a><a href="#orari">Orari e dove siamo</a>
+    </nav>
+    <a class="hcall" href="tel:+390721895646"><svg class="i"><use href="#phone"/></svg>0721 895646</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">VIA PONTE METAURO 88 · CALCINELLI (USCITA SUPERSTRADA) · APERTI DALLE 07:00</p>
+      <h1>Bakery Lab — Dal laboratorio a vista alle 07:00 fino ai burger gourmet e aperitivi della sera.</h1>
+      <p><em>Caffetteria, pasticceria artigianale sfornata ogni mattina nel nostro lab a vista, pausa pranzo espressa, hamburger gourmet e cocktail bar in un ambiente industrial-urban.</em></p>
+      <div class="cta">
+        <a class="btn red" href="#menu">Sfoglia il Menù con Prezzi</a>
+        <a class="btn light" href="#prenota">Prenota Tavolo o Asporto</a>
+        <a class="btn light" href="tel:+390721895646"><svg class="i"><use href="#phone"/></svg>Chiama Subito (0721 895646)</a>
+      </div>
+    </div>
+    <div class="ph"><img src="img/sala-urban.jpg?v=1" alt="Interni industrial urban di Bakery Lab Bistrot a Calcinelli" onerror="this.remove()"></div>
+  </div>
+</section>
+
+<section id="galleria">
+  <div class="wrap">
+    <h2>Il locale, per davvero</h2>
+    <p class="lead">Lamiera, legno naturale, ferro nero e il profumo del forno acceso. Tocca una foto per ingrandirla.</p>
+    <div class="grid4" id="gal">
+      <button class="card" data-i="0"><div class="ph"><img src="img/banco-dolci.jpg?v=1" alt="Banco dei dolci e viennoiserie del laboratorio Bakery Lab" loading="lazy" onerror="this.remove()"></div><div class="t"><h3>Il Laboratorio del Dolce &amp; Viennoiserie</h3><p>Strudel, crostate, muffin e dolci artigianali preparati nel laboratorio a vista.</p></div></button>
+      <button class="card" data-i="1"><div class="ph"><img src="img/sala-urban.jpg?v=1" alt="Sala industrial-urban di Bakery Lab" loading="lazy" onerror="this.remove()"></div><div class="t"><h3>Ambiente Industrial-Urban</h3><p>Spazio moderno, tranquillo e accogliente, ideale per colazioni, pranzi di lavoro o lavorare su laptop.</p></div></button>
+      <button class="card" data-i="2"><div class="ph"><img src="img/pasticceria.jpg?v=1" alt="Biscotti, ciambelle e paste fresche di Bakery Lab" loading="lazy" onerror="this.remove()"></div><div class="t"><h3>Biscotteria &amp; Pasticceria Fresca</h3><p>Ampia scelta di biscotti artigianali, ciambelle e paste fresche ogni mattina dalle 07:00.</p></div></button>
+      <button class="card" data-i="3"><div class="ph"><img src="img/burger.jpg?v=1" alt="Lab Burger gourmet con pane al sesamo" loading="lazy" onerror="this.remove()"></div><div class="t"><h3>I Nostri Lab Burger Gourmet</h3><p>Carne selezionata, pane artigianale al sesamo, cheddar, bacon croccante e ingredienti freschi.</p></div></button>
+    </div>
+  </div>
+</section>
+<dialog id="lb" aria-label="Foto ingrandita"><figure><button id="lbx" aria-label="Chiudi">×</button><img id="lbi" alt=""><figcaption id="lbc"></figcaption></figure></dialog>
+
+<section id="menu" class="alt">
+  <div class="wrap">
+    <h2>Menù e prezzi</h2>
+    <p class="lead">Dalla colazione delle 07:00 alla pausa pranzo, fino ai burger. Filtra per momento della giornata.</p>
+    <div class="filters" role="group" aria-label="Filtra il menù">
+      <button class="chip" data-f="all" aria-pressed="true">Tutti</button>
+      <button class="chip" data-f="col" aria-pressed="false">Colazione &amp; Pasticceria</button>
+      <button class="chip" data-f="pri" aria-pressed="false">Primi &amp; Pausa Pranzo</button>
+      <button class="chip" data-f="bur" aria-pressed="false">Lab Burger &amp; Piadine</button>
+    </div>
+    <div class="menu" id="menugrid">
+      <div class="group" data-c="col">
+        <h3>Colazione &amp; Pasticceria</h3><p class="sub">Dalle 07:00</p>
+        <div class="item"><div><b>Brioche artigianali del lab</b><small>Sfornate ogni mattina</small></div></div>
+        <div class="item"><div><b>Biscotteria fresca</b></div></div>
+        <div class="item"><div><b>Crostate e muffin</b></div></div>
+        <div class="item"><div><b>Caffetteria espressa</b></div></div>
+        <div class="item"><div><b>Vasta selezione di tè</b></div></div>
+      </div>
+      <div class="group" data-c="pri">
+        <h3>Primi &amp; Secondi Espresso</h3><p class="sub">Pausa pranzo</p>
+        <div class="item"><b>Sedanini pasticciati</b><span class="price">6,50 €</span></div>
+        <div class="item"><b>Tagliatelle al ragù</b><span class="price">6,50 €</span></div>
+        <div class="item"><b>Arista di suino alla piastra con contorno</b><span class="price">8,00 €</span></div>
+        <div class="item"><b>Crostolo di Urbania farcito</b><span class="price">5,50 €</span></div>
+        <div class="item"><b>Crescia di Urbino</b><span class="price">5,50 €</span></div>
+        <div class="item"><b>Insalatone fresche</b><span class="price">6,50 € – 7,50 €</span></div>
+      </div>
+      <div class="group" data-c="bur" style="grid-column:1/-1">
+        <h3>Menù Hamburger &amp; Special Burger</h3>
+        <div class="menu" style="gap:0 48px">
+          <div>
+            <div class="item"><b>Baconcheese</b><span class="price">6,50 €</span></div>
+            <div class="item"><b>Cheeseburger</b><span class="price">6,50 €</span></div>
+            <div class="item"><div><b>Lab Burger</b><small>Manzo, iceberg, pomodoro, cheddar, bacon, uovo, cipolla caramellata</small></div><span class="price">7,50 €</span></div>
+          </div>
+          <div>
+            <div class="item"><b>Chickenburger</b><span class="price">7,50 €</span></div>
+            <div class="item"><b>Cheddarbacon</b><span class="price">7,50 €</span></div>
+            <div class="item"><b>Chickentortillas</b><span class="price">8,00 €</span></div>
+            <div class="item"><b>Doppio Baconcheese</b><span class="price">9,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="burger" class="dark">
+  <div class="wrap burger">
+    <div>
+      <p class="big">7,50 €</p>
+      <h2>Il Lab Burger</h2>
+      <p class="lead">Manzo, iceberg, pomodoro, cheddar, bacon, uovo e cipolla caramellata nel pane artigianale al sesamo. Alla sera il lab si spegne e si accendono piastra e bancone cocktail: aperitivo e cena dalle 18:00.</p>
+      <div class="cta"><a class="btn red" href="#prenota">Prenota per la sera</a><a class="btn light" href="tel:+390721895646">Chiama 0721 895646</a></div>
+    </div>
+    <div class="ph" style="aspect-ratio:4/3"><img src="img/burger.jpg?v=1" alt="Lab Burger gourmet di Bakery Lab" loading="lazy" onerror="this.remove()"></div>
+  </div>
+</section>
+
+<section id="prenota">
+  <div class="wrap">
+    <h2>Prenota o ordina</h2>
+    <p class="lead">Tre passaggi. Nessun dato lascia questa pagina: chiami, oppure copi il riepilogo e lo incolli in un messaggio Instagram.</p>
+    <form id="f" novalidate>
+      <fieldset>
+        <legend><span>1</span>Modalità</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="mod" value="Consumazione al Tavolo" checked><span>Consumazione al Tavolo</span></label>
+          <label class="opt"><input type="radio" name="mod" value="Ritiro Asporto in Locale"><span>Ritiro Asporto in Locale</span></label>
+          <label class="opt"><input type="radio" name="mod" value="Consegna a Domicilio / Senza Contatto"><span>Consegna a Domicilio / Senza Contatto</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span>2</span>Giorno, fascia oraria e ospiti</legend>
+        <div class="row">
+          <label class="f">Data<input type="date" id="data"></label>
+          <label class="f">Fascia oraria<select id="fascia">
+            <option>Colazione 07:00–11:30</option><option>Pausa Pranzo 12:00–15:00</option><option>Aperitivo &amp; Cena 18:00–22:00</option></select></label>
+          <label class="f">Persone<select id="pers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+        </div>
+        <p id="dnote" style="font-size:.85rem;color:var(--muted)">Domenica siamo chiusi.</p>
+      </fieldset>
+      <fieldset>
+        <legend><span>3</span>Riepilogo e contatto diretto</legend>
+        <label class="f">Nome<input type="text" id="nome" autocomplete="given-name"></label>
+        <label class="f">Note o piatti scelti<textarea id="note" rows="3" placeholder="Es. 2 Lab Burger, 1 Tagliatelle al ragù"></textarea></label>
+        <label class="gdpr"><input type="checkbox" id="priv"><span>Ho letto l'<a href="#privacy">informativa privacy</a>. Il riepilogo resta sul mio dispositivo e non viene inviato a nessun server.</span></label>
+        <div class="actions">
+          <a class="btn red" href="tel:+390721895646"><svg class="i"><use href="#phone"/></svg>Chiama Ora per Ordinare (0721 895646)</a>
+          <button type="button" class="btn ink" id="copy"><svg class="i"><use href="#copy"/></svg>Copia Riepilogo Ordine per Instagram DM (@bakerylab.bistrot)</button>
+        </div>
+        <p id="msg" role="status" aria-live="polite"></p>
+      </fieldset>
+    </form>
+  </div>
+</section>
+
+<section id="orari" class="alt">
+  <div class="wrap info">
+    <div>
+      <h2>Orari e servizi</h2>
+      <table>
+        <tr><td>Lunedì – Giovedì</td><td>07:00 – 21:30</td></tr>
+        <tr><td>Venerdì – Sabato</td><td>07:00 – 22:00</td></tr>
+        <tr class="closed"><td>Domenica</td><td>Chiuso</td></tr>
+      </table>
+      <ul class="badges">
+        <li><svg class="i"><use href="#car"/></svg>Ampio parcheggio gratuito</li>
+        <li><svg class="i"><use href="#paw"/></svg>Cani ammessi</li>
+        <li><svg class="i"><use href="#users"/></svg>Adatto a gruppi</li>
+        <li><svg class="i"><use href="#laptop"/></svg>Lavoro su laptop</li>
+        <li><svg class="i"><use href="#access"/></svg>Accessibile in sedia a rotelle: ingresso, bagno, parcheggio e tavoli</li>
+        <li><svg class="i"><use href="#card"/></svg>Carte e pagamenti NFC</li>
+      </ul>
+      <address>
+        <b>Bakery Lab — Cafè · Food · Bistrot</b><br>
+        Via Ponte Metauro, 88 – 61036 Calcinelli (Colli al Metauro, PU)<br>
+        Tel. <a href="tel:+390721895646">0721 895646</a> · Instagram <a href="https://www.instagram.com/bakerylab.bistrot" rel="noopener">@bakerylab.bistrot</a>
+      </address>
+    </div>
+    <div>
+      <h2>Dove siamo</h2>
+      <div class="map" id="map">
+        <button class="btn ink" id="loadmap"><svg class="i"><use href="#pin"/></svg>Carica la mappa</button>
+      </div>
+      <p style="font-size:.85rem;color:var(--muted);margin-top:8px">La mappa di Google viene caricata solo dopo il tuo clic.</p>
+    </div>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="wrap">
+    <details>
+      <summary>Informativa Privacy (GDPR, Reg. UE 2016/679)</summary>
+      <p><b>Titolare:</b> Bakery Lab, Via Ponte Metauro 88, 61036 Calcinelli (PU) · Tel. 0721 895646.</p>
+      <ul>
+        <li><b>Cookie:</b> questo sito non usa cookie di profilazione né strumenti di tracciamento o analisi.</li>
+        <li><b>Modulo di prenotazione:</b> i dati inseriti restano nel tuo browser. Il sito non li invia né li salva. Vengono trattati da noi solo se scegli di chiamare o di inviare il riepilogo via Instagram.</li>
+        <li><b>Mappa:</b> solo se clicchi "Carica la mappa" viene caricato un contenuto di Google, che può trattare dati secondo la propria informativa.</li>
+        <li><b>Instagram:</b> se ci scrivi su Instagram, il trattamento è regolato dall'informativa di Meta.</li>
+        <li><b>Diritti:</b> puoi chiedere accesso, rettifica, cancellazione e limitazione dei dati che ci hai comunicato, e proporre reclamo al Garante per la protezione dei dati personali (garanteprivacy.it).</li>
+      </ul>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <a class="brand" href="#top" aria-label="Bakery Lab"><svg style="width:64px;height:64px"><use href="#logo"/></svg><span>BAKERY LAB<br><small style="font:400 .8rem var(--body);letter-spacing:.05em">Cafè · Food · Bistrot</small></span></a>
+      <address style="margin:0">Via Ponte Metauro, 88<br>61036 Calcinelli (PU)<br><a href="tel:+390721895646">0721 895646</a></address>
+      <div>Lun–Gio 07:00–21:30<br>Ven–Sab 07:00–22:00<br>Domenica chiuso</div>
+      <a class="btn light" href="https://www.instagram.com/bakerylab.bistrot" rel="noopener">@bakerylab.bistrot</a>
+    </div>
+    <p class="copy">© <span id="yr">2026</span> Bakery Lab · <a href="#privacy">Privacy</a> · Nessun cookie di profilazione</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  $('#yr').textContent=new Date().getFullYear();
+
+  // Lightbox
+  var lb=$('#lb'),cards=$$('#gal .card');
+  cards.forEach(function(c){c.addEventListener('click',function(){
+    var im=$('img',c);
+    $('#lbi').src=im?im.src:'';$('#lbi').alt=im?im.alt:'';
+    $('#lbc').textContent=$('h3',c).textContent+' — '+$('p',c).textContent;
+    lb.showModal();
+  });});
+  $('#lbx').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+
+  // Menu filters
+  var chips=$$('.chip'),groups=$$('#menugrid>.group');
+  chips.forEach(function(ch){ch.addEventListener('click',function(){
+    var f=ch.dataset.f;
+    chips.forEach(function(x){x.setAttribute('aria-pressed',x===ch)});
+    groups.forEach(function(g){g.hidden=!(f==='all'||g.dataset.c===f)});
+    $('#menugrid').classList.toggle('one',f!=='all');
+  });});
+
+  // Date: min today, no Sundays
+  var d=$('#data'),t=new Date();
+  d.min=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2);
+  d.addEventListener('change',function(){
+    var day=d.value?new Date(d.value+'T12:00:00').getDay():-1;
+    $('#dnote').style.color=day===0?'var(--brick)':'';
+    $('#dnote').textContent=day===0?'Domenica siamo chiusi: scegli un altro giorno.':'Domenica siamo chiusi.';
+  });
+
+  // Copy summary
+  function say(m){$('#msg').textContent=m}
+  function summary(){
+    var dt=d.value?new Date(d.value+'T12:00:00').toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'}):'da definire';
+    return 'Ciao Bakery Lab! Vorrei prenotare/ordinare.\n'+
+      'Modalità: '+$('input[name=mod]:checked').value+'\n'+
+      'Giorno: '+dt+'\nFascia: '+$('#fascia').value+'\nPersone: '+$('#pers').value+'\n'+
+      'Nome: '+($('#nome').value.trim()||'—')+'\nNote/Piatti: '+($('#note').value.trim()||'—');
+  }
+  $('#copy').addEventListener('click',function(){
+    if(!$('#priv').checked){say('Spunta la casella privacy per copiare il riepilogo.');$('#priv').focus();return}
+    if(d.value&&new Date(d.value+'T12:00:00').getDay()===0){say('Domenica siamo chiusi: scegli un altro giorno.');return}
+    var txt=summary();
+    function ok(){say('Riepilogo copiato. Aprilo su Instagram e incollalo in un messaggio a @bakerylab.bistrot.')}
+    function fallback(){
+      var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy')?ok():say('Copia non riuscita: seleziona e copia il testo a mano.')}catch(e){say('Copia non riuscita: seleziona e copia il testo a mano.')}
+      ta.remove();
+    }
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback)}else fallback();
+  });
+
+  // Map on click
+  $('#loadmap').addEventListener('click',function(){
+    var m=$('#map'),f=document.createElement('iframe');
+    f.src='https://www.google.com/maps?q='+encodeURIComponent('Bakery Lab, Via Ponte Metauro 88, 61036 Calcinelli PU')+'&output=embed';
+    f.title='Mappa di Bakery Lab a Calcinelli';f.loading='lazy';f.referrerPolicy='no-referrer-when-downgrade';
+    m.innerHTML='';m.appendChild(f);
+  });
+})();
+</script>
+</body>
+</html>
